@@ -947,6 +947,9 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@modules/app-menu@file:./modules/app-menu/":
+  version "1.0.0"
+
 "@modules/articles@file:./modules/articles":
   version "1.0.0"
 
@@ -957,7 +960,7 @@
     "@react-navigation/stack" "^5.14.2"
     react-native-keyboard-aware-scroll-view "^0.9.3"
 
-"@modules/push-notifications@file:./modules/push-notifications/":
+"@modules/push-notifications@file:./modules/push-notifications":
   version "1.0.0"
 
 "@modules/user-profile@file:./modules/user-profile":

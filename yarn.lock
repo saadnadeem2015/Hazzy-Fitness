@@ -950,6 +950,9 @@
 "@modules/articles@file:./modules/articles":
   version "1.0.0"
 
+"@modules/articles@file:./modules/articles/":
+  version "1.0.0"
+
 "@modules/login@file:./modules/login":
   version "1.0.0"
   dependencies:
@@ -957,7 +960,7 @@
     "@react-navigation/stack" "^5.14.2"
     react-native-keyboard-aware-scroll-view "^0.9.3"
 
-"@modules/user-profile@file:./modules/user-profile/":
+"@modules/user-profile@file:./modules/user-profile":
   version "1.0.0"
   dependencies:
     "@react-navigation/native" "^5.9.2"

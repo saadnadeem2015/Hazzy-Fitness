@@ -4,6 +4,20 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
+class Gender(models.Model):
+    name = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
+
+
 class User(AbstractUser):
     # WARNING!
     """
@@ -22,5 +36,20 @@ class User(AbstractUser):
     # around the globe.
     name = models.CharField(_("Name of User"), blank=True, null=True, max_length=255)
 
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, null=True, blank=True)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True, blank=True)
+
+    profile_image = models.ImageField(upload_to="profile_media/", null=True, blank=True)
+
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
+
+
+class PasswordResetToken(models.Model):
+    requested_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    token = models.IntegerField()
+    expiry_date = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.token)

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 LOCAL_APPS = [
     'home',
     'users.apps.UsersConfig',
+    'questionnaire'
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',
@@ -201,6 +202,7 @@ AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID", "")
 AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY", "")
 AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME", "")
 AWS_STORAGE_REGION = env.str("AWS_STORAGE_REGION", "")
+AWS_S3_REGION_NAME = env.str("AWS_STORAGE_REGION", "")
 
 USE_S3 = (
     AWS_ACCESS_KEY_ID and

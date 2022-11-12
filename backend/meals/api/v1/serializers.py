@@ -6,6 +6,7 @@ from meals.models import (
     MealInstruction,
     Meal,
     MealPlan,
+    MealCompletion
 )
 from users.api.v1.serializers import UserBriefSerializer
 
@@ -41,9 +42,21 @@ class MealSerializer(serializers.ModelSerializer):
     category = MealCategorySerializer(read_only=True)
     filters = MealFilterSerializer(read_only=True)
 
+    is_completed = serializers.SerializerMethodField()
+
     class Meta:
         model = Meal
         fields = '__all__'
+
+    def get_is_completed(self, obj):
+        try:
+            user = self.context['request'].user
+        except:
+            return None
+        if len(MealCompletion.objects.filter(meal=obj, owner=user, is_complete=True)) > 0:
+            return True
+        else:
+            return False
 
 
 class MealPlanSerializer(serializers.ModelSerializer):
@@ -55,4 +68,15 @@ class MealPlanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MealPlan
+        fields = '__all__'
+
+
+class MealCompletionSerializer(serializers.ModelSerializer):
+    meal = MealSerializer(read_only=True)
+    meal_id = serializers.PrimaryKeyRelatedField(write_only=True, source='meal',
+                                                    queryset=Meal.objects.all())
+    owner = UserBriefSerializer(read_only=True)
+
+    class Meta:
+        model = MealCompletion
         fields = '__all__'

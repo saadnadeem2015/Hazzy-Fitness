@@ -26,6 +26,7 @@ class HeightUnit(models.Model):
 
 class ActivityLevel(models.Model):
     name = models.CharField(max_length=256)
+    value = models.CharField(max_length=256, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -40,6 +41,7 @@ class WorkoutAvailability(models.Model):
 
 class Goal(models.Model):
     name = models.CharField(max_length=256)
+    value = models.CharField(max_length=256, null=True, blank=True)
 
     def __str__(self):
         return self.name

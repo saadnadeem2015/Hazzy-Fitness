@@ -5,7 +5,8 @@ from .viewsets import (
     MealFilterViewSet,
     MealPlanViewSet,
     MealListViewSet,
-    MealViewSet
+    MealViewSet,
+    MealCompletionViewSet
 )
 
 router = DefaultRouter()
@@ -14,6 +15,7 @@ router.register("meal_category", MealCategoryViewSet, basename="meal_category")
 router.register("meal_filter", MealFilterViewSet, basename="meal_filter")
 router.register("meal_plan", MealPlanViewSet, basename="meal_plan")
 router.register("meal", MealViewSet, basename="meal")
+router.register("complete_meal", MealCompletionViewSet, basename="complete_meal")
 
 
 urlpatterns = [

@@ -85,3 +85,13 @@ class MealPlan(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+
+class MealCompletion(models.Model):
+    meal = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name="meals_completed")
+    owner = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name="completed_meals")
+
+    is_complete = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)

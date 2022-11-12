@@ -8,6 +8,7 @@ from .serializers import (
     MealInstructionSerializer,
     MealSerializer,
     MealPlanSerializer,
+    MealCompletionSerializer
 )
 
 from rest_framework.authtoken.serializers import AuthTokenSerializer
@@ -22,6 +23,7 @@ from meals.models import (
     MealInstruction,
     Meal,
     MealPlan,
+    MealCompletion
 )
 from datetime import datetime, timedelta
 import random as r
@@ -97,7 +99,7 @@ class MealPlanViewSet(viewsets.ModelViewSet):
         return Response(MealPlanSerializer(plan).data)
 
     def list(self, request):
-        return Response(MealPlanSerializer(request.user.user_meal_plans.filter(is_current=True).first()).data)
+        return Response(MealPlanSerializer(request.user.user_meal_plans.filter(is_current=True).first(), context={'request': request}).data)
 
 
 class ListPagination(PageNumberPagination):
@@ -150,3 +152,14 @@ class MealListViewSet(generics.ListAPIView):
             query = query.filter(title__icontains=q)
 
         return query
+
+
+class MealCompletionViewSet(viewsets.ModelViewSet):
+    queryset = MealCompletion.objects.all()
+    serializer_class = MealCompletionSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ["post"]
+
+    def perform_create(self, serializer):
+        item = serializer.save(owner=self.request.user, is_complete=True)

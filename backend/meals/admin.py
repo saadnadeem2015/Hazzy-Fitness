@@ -8,6 +8,7 @@ from .models import (
     MealInstruction,
     Meal,
     MealPlan,
+    MealCompletion
 )
 
 admin.site.register(MealCategory)
@@ -16,3 +17,4 @@ admin.site.register(MealIngredient)
 admin.site.register(MealInstruction)
 admin.site.register(Meal)
 admin.site.register(MealPlan)
+admin.site.register(MealCompletion)

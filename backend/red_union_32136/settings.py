@@ -51,7 +51,9 @@ INSTALLED_APPS = [
 LOCAL_APPS = [
     'home',
     'users.apps.UsersConfig',
-    'questionnaire'
+    'questionnaire',
+    'meals',
+    'workouts'
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',

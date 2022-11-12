@@ -28,6 +28,8 @@ from django.utils.translation import gettext as _
 import base64
 from django.core.files.base import ContentFile
 
+from .helper import calculate_age, calculate_user_numbers
+
 
 class GenderViewSet(viewsets.ModelViewSet):
     queryset = Gender.objects.all()
@@ -197,3 +199,36 @@ class ConfirmPasswordResetViewSet(ViewSet):
         token, created = Token.objects.get_or_create(user=user)
         user_serializer = UserInfoSerializer(user)
         return Response({"token": token.key, "user": user_serializer.data})
+
+
+class UpdateUserMacrosViewSet(ViewSet):
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
+
+    def create(self, request):
+        qu = request.user.user_questionnaire
+        complete = qu.birth_date and qu.life_style and qu.weight and qu.weight_unit and qu.height and qu.height_unit
+        complete = complete and qu.activity_level and qu.workout_availability and qu.goal
+        if complete:
+            age = calculate_age(qu.birth_date)
+            result = calculate_user_numbers(
+                age,
+                request.user.gender.name.lower(),
+                qu.weight,
+                qu.weight_unit.name,
+                qu.height,
+                qu.height_unit.name,
+                qu.activity_level.value,
+                qu.goal.value,
+            )
+            request.user.goal_calories = str(result[0]).replace(",", "")
+            request.user.goal_protein = str(result[1]).replace(",", "")
+            request.user.goal_carbohydrates = str(result[2]).replace(",", "")
+            request.user.goal_fats = str(result[3]).replace(",", "")
+            request.user.save()
+
+            return Response(UserInfoSerializer(request.user).data)
+        else:
+            return Response({
+                'Error': 'Please Complete your profile first!'
+            }, 400)

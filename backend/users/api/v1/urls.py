@@ -8,7 +8,8 @@ from .viewsets import (
     ConfirmPasswordResetViewSet,
     UpdateProfilePictureViewSet,
     GenderViewSet,
-    CountryViewSet
+    CountryViewSet,
+    UpdateUserMacrosViewSet
 )
 
 router = DefaultRouter()
@@ -24,6 +25,8 @@ router.register("verify_reset_token", VerifyResetTokenViewSet, basename="verify_
 router.register("confirm_password_reset", ConfirmPasswordResetViewSet, basename="confirm_password_reset")
 
 router.register("profile_picture", UpdateProfilePictureViewSet, basename="profile_picture")
+
+router.register("update_macros", UpdateUserMacrosViewSet, basename="update_macros")
 
 
 urlpatterns = [

@@ -45,7 +45,11 @@ class UserInfoSerializer(serializers.ModelSerializer):
                   'gender_id',
                   'country',
                   'country_id',
-                  'user_questionnaire'
+                  'user_questionnaire',
+                  'goal_calories',
+                  'goal_protein',
+                  'goal_carbohydrates',
+                  'goal_fats',
                   ]
 
 

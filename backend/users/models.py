@@ -41,6 +41,11 @@ class User(AbstractUser):
 
     profile_image = models.ImageField(upload_to="profile_media/", null=True, blank=True)
 
+    goal_calories = models.FloatField(null=True, blank=True)
+    goal_protein = models.FloatField(null=True, blank=True)
+    goal_carbohydrates = models.FloatField(null=True, blank=True)
+    goal_fats = models.FloatField(null=True, blank=True)
+
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
 

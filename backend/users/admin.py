@@ -3,13 +3,14 @@ from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 
 from users.forms import UserChangeForm, UserCreationForm
-from .models import Country, Gender
+from .models import Country, Gender, PasswordResetToken
 
 User = get_user_model()
 
 
 admin.site.register(Country)
 admin.site.register(Gender)
+admin.site.register(PasswordResetToken)
 
 
 @admin.register(User)

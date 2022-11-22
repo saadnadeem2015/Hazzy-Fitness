@@ -6,6 +6,7 @@ from .models import (
     ActivityLevel,
     WorkoutAvailability,
     Goal,
+    TrainingFor,
     Questionnaire
 )
 # Register your models here.
@@ -16,4 +17,5 @@ admin.site.register(HeightUnit)
 admin.site.register(ActivityLevel)
 admin.site.register(WorkoutAvailability)
 admin.site.register(Goal)
+admin.site.register(TrainingFor)
 admin.site.register(Questionnaire)

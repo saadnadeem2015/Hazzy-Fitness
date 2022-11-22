@@ -47,6 +47,14 @@ class Goal(models.Model):
         return self.name
 
 
+class TrainingFor(models.Model):
+    name = models.CharField(max_length=256)
+    value = models.CharField(max_length=256, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Questionnaire(models.Model):
     user = models.OneToOneField(
         'users.User',
@@ -66,4 +74,5 @@ class Questionnaire(models.Model):
 
     activity_level = models.ForeignKey(ActivityLevel, on_delete=models.CASCADE, null=True, blank=True)
     workout_availability = models.ForeignKey(WorkoutAvailability, on_delete=models.CASCADE, null=True, blank=True)
+    training_for = models.ForeignKey(TrainingFor, on_delete=models.CASCADE, null=True, blank=True)
     goal = models.ForeignKey(Goal, on_delete=models.CASCADE, null=True, blank=True)

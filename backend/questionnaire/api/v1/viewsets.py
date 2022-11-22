@@ -7,6 +7,7 @@ from .serializers import (
     ActivityLevelSerializer,
     WorkoutAvailabilitySerializer,
     GoalSerializer,
+    TrainingForSerializer,
     QuestionnaireSerializer,
 )
 from rest_framework.authtoken.serializers import AuthTokenSerializer
@@ -21,6 +22,7 @@ from questionnaire.models import (
     ActivityLevel,
     WorkoutAvailability,
     Goal,
+    TrainingFor,
     Questionnaire
 )
 from datetime import datetime, timedelta
@@ -72,6 +74,14 @@ class WorkoutAvailabilityViewSet(viewsets.ModelViewSet):
 class GoalViewSet(viewsets.ModelViewSet):
     queryset = Goal.objects.all()
     serializer_class = GoalSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ["get"]
+
+
+class TrainingForViewSet(viewsets.ModelViewSet):
+    queryset = TrainingFor.objects.all()
+    serializer_class = TrainingForSerializer
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = [permissions.IsAuthenticated]
     http_method_names = ["get"]

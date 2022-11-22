@@ -6,6 +6,7 @@ from questionnaire.models import (
     ActivityLevel,
     WorkoutAvailability,
     Goal,
+    TrainingFor,
     Questionnaire
 )
 
@@ -46,6 +47,12 @@ class GoalSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class TrainingForSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrainingFor
+        fields = '__all__'
+
+
 class QuestionnaireSerializer(serializers.ModelSerializer):
     life_style = LifeStyleSerializer(read_only=True)
     life_style_id = serializers.PrimaryKeyRelatedField(write_only=True, source='life_style',
@@ -71,6 +78,10 @@ class QuestionnaireSerializer(serializers.ModelSerializer):
     goal_id = serializers.PrimaryKeyRelatedField(write_only=True, source='goal',
                                                                  queryset=Goal.objects.all())
 
+    training_for = TrainingForSerializer(read_only=True)
+    training_for_id = serializers.PrimaryKeyRelatedField(write_only=True, source='training_for',
+                                                 queryset=TrainingFor.objects.all())
+
     class Meta:
         model = Questionnaire
         fields = ['id',
@@ -90,4 +101,6 @@ class QuestionnaireSerializer(serializers.ModelSerializer):
                   'workout_availability_id',
                   'goal',
                   'goal_id',
+                  'training_for',
+                  'training_for_id',
                   ]

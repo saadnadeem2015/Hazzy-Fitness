@@ -9,6 +9,8 @@ from allauth.account.utils import setup_user_email
 from rest_framework import serializers
 from rest_auth.serializers import PasswordResetSerializer
 
+from home.models import Notification, Feedback
+
 
 User = get_user_model()
 
@@ -74,3 +76,35 @@ class UserSerializer(serializers.ModelSerializer):
 class PasswordSerializer(PasswordResetSerializer):
     """Custom serializer for rest_auth to solve reset password error"""
     password_reset_form_class = ResetPasswordForm
+
+
+class UserNotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'name', 'profile_image']
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    from_user = UserNotificationSerializer()
+    to_user = UserNotificationSerializer()
+
+    class Meta:
+        model = Notification
+        fields = (
+            'id',
+            'content',
+            'from_user',
+            'to_user',
+            'is_read',
+            'created_at',
+            'updated_at',
+            'posted_at_view',
+        )
+
+
+class FeedbackSerializer(serializers.ModelSerializer):
+    feedback_by = UserNotificationSerializer()
+
+    class Meta:
+        model = Feedback
+        fields = '__all__'

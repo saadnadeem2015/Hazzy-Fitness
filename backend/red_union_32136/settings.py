@@ -36,6 +36,47 @@ SITE_ID = 1
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = env.bool("SECURE_REDIRECT", default=False)
 
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": env.bool("GOOGLE_CLIENT_ID", default=""),
+            "secret": env.bool("GOOGLE_SECRET_ID", default=""),
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+            "openid",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "offline",
+        },
+    },
+    "facebook": {
+        "APP": {
+            "client_id": env.bool("FACEBOOK_CLIENT_ID", default=""),
+            "secret": env.bool("FACEBOOK_SECRET_ID", default=""),
+        },
+        "METHOD": "oauth2",
+        "SCOPE": ["email", "public_profile"],
+        "AUTH_PARAMS": {"auth_type": "reauthenticate"},
+        "INIT_PARAMS": {"cookie": True},
+        "FIELDS": [
+            "id",
+            "email",
+            "first_name",
+            "last_name",
+            "middle_name",
+            "name",
+            "name_format",
+            "picture",
+            "short_name"
+        ],
+        "EXCHANGE_TOKEN": True,
+        "VERIFIED_EMAIL": False,
+        "VERSION": "v7.0",
+    }
+}
+
 
 # Application definition
 
@@ -65,6 +106,8 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.apple',
     'django_extensions',
     'drf_yasg',
     'storages',

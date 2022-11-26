@@ -13,6 +13,14 @@ from home.api.v1.serializers import (
 from rest_framework.pagination import PageNumberPagination
 from home.models import Notification, Feedback
 
+from allauth.socialaccount.providers.apple.client import AppleOAuth2Client
+from allauth.socialaccount.providers.apple.views import AppleOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from .serializers import CustomAppleSocialLoginSerializer
+
 
 class SignupViewSet(ModelViewSet):
     serializer_class = SignupSerializer
@@ -122,3 +130,34 @@ class FeedbackViewSet(ModelViewSet):
             feedback_by=request.user
         )
         return Response(FeedbackSerializer(feedback).data)
+
+
+class GoogleLogin(SocialLoginView):
+    permission_classes = (permissions.AllowAny,)
+    adapter_class = GoogleOAuth2Adapter
+    client_class = OAuth2Client
+
+    def post(self, request, *args, **kwargs):
+        res = super().post(request, *args, **kwargs)
+        token = res.data["key"]
+        token_object = Token.objects.get(key=token)
+        user_serializer = UserSerializer(token_object.user)
+        return Response(
+            {"token": token, "user": user_serializer.data}
+        )
+
+
+class AppleLogin(SocialLoginView):
+    adapter_class = AppleOAuth2Adapter
+    client_class = AppleOAuth2Client
+    serializer_class = CustomAppleSocialLoginSerializer
+    callback_url = f"https://{APP_DOMAIN}/accounts/apple/login/callback/"
+
+    def post(self, request, *args, **kwargs):
+        res = super().post(request, *args, **kwargs)
+        token = res.data["key"]
+        token_object = Token.objects.get(key=token)
+        user_serializer = UserSerializer(token_object.user)
+        return Response(
+            {"token": token, "user": user_serializer.data}
+        )

@@ -31,6 +31,7 @@ urlpatterns = [
     path("api/v1/questionnaire/", include("questionnaire.api.v1.urls")),
     path("api/v1/meals/", include("meals.api.v1.urls")),
     path("api/v1/workouts/", include("workouts.api.v1.urls")),
+    path("social/", include("custom_social_auth.api.v1.urls")),
     path("admin/", admin.site.urls),
     path("users/", include("users.urls", namespace="users")),
     path("rest-auth/", include("rest_auth.urls")),

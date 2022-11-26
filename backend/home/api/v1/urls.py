@@ -6,7 +6,9 @@ from home.api.v1.viewsets import (
     LoginViewSet,
     FeedbackViewSet,
     ReadNotificationViewSet,
-    NotificationListViewSet
+    NotificationListViewSet,
+    GoogleLogin,
+    AppleLogin,
 )
 
 router = DefaultRouter()
@@ -18,4 +20,6 @@ router.register("read_notification", ReadNotificationViewSet, basename="read_not
 urlpatterns = [
     path("", include(router.urls)),
     path('notifications/', NotificationListViewSet.as_view(), name="notifications"),
+    path("google/login/", GoogleLogin.as_view(), name="social_google_login"),
+    path("apple/login/", AppleLogin.as_view(), name="social_apple_login"),
 ]

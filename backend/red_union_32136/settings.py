@@ -94,7 +94,8 @@ LOCAL_APPS = [
     'users.apps.UsersConfig',
     'questionnaire',
     'meals',
-    'workouts'
+    'workouts',
+    'custom_social_auth'
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',

@@ -95,7 +95,8 @@ LOCAL_APPS = [
     'questionnaire',
     'meals',
     'workouts',
-    'custom_social_auth'
+    'custom_social_auth',
+    'membership'
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',

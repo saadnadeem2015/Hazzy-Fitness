@@ -6,6 +6,8 @@ from users.models import (
     Country
 )
 
+from membership.api.v1.serializers import *
+
 
 class CountrySerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,6 +37,9 @@ class UserInfoSerializer(serializers.ModelSerializer):
     country = GenderSerializer(read_only=True)
     country_id = serializers.PrimaryKeyRelatedField(write_only=True, source='country', queryset=Country.objects.all())
 
+    active_membership = UserActiveMembershipSerializer(read_only=True)
+    memberships = UserActiveMembershipSerializer(read_only=True, many=True)
+
     class Meta:
         model = User
         fields = ['id',
@@ -50,6 +55,8 @@ class UserInfoSerializer(serializers.ModelSerializer):
                   'goal_protein',
                   'goal_carbohydrates',
                   'goal_fats',
+                  'active_membership',
+                  'memberships',
                   ]
 
 

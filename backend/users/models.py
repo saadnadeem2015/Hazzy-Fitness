@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
+from membership.models import PaymentMethod, UserMembership
 
 
 class Gender(models.Model):
@@ -45,6 +46,32 @@ class User(AbstractUser):
     goal_protein = models.FloatField(null=True, blank=True)
     goal_carbohydrates = models.FloatField(null=True, blank=True)
     goal_fats = models.FloatField(null=True, blank=True)
+
+    payment_method = models.ForeignKey(
+        PaymentMethod,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="payment_method_user"
+    )
+
+    active_membership = models.ForeignKey(
+        UserMembership,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="active_membership"
+    )
+
+    memberships = models.ManyToManyField(
+        UserMembership, blank=True
+    )
+
+    payment_cards = models.ManyToManyField(
+        PaymentMethod, blank=True
+    )
+
+    stripe_cust_id = models.CharField(max_length=256, blank=True, null=True)
+
+
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})

@@ -2,10 +2,12 @@ from rest_framework import viewsets, generics, permissions, serializers, authent
 from rest_framework.pagination import PageNumberPagination
 
 from .serializers import (
-    WorkoutCategorySerializer,
-    WorkoutMediaSerializer,
-    WorkoutSerializer,
-    WorkoutSubscriptionSerializer
+    ExerciseCategorySerializer,
+    ExerciseMediaSerializer,
+    ExerciseSerializer,
+    ProgramSerializer,
+    WorkoutSubscriptionSerializer,
+    WorkoutRatingSerializer
 )
 
 from rest_framework.authtoken.serializers import AuthTokenSerializer
@@ -14,10 +16,14 @@ from rest_framework.parsers import FileUploadParser, MultiPartParser
 from rest_framework.viewsets import ViewSet
 import re
 from workouts.models import (
-    WorkoutCategory,
-    WorkoutMedia,
-    Workout,
-    WorkoutSubscription
+    ExerciseCategory,
+    ExerciseMedia,
+    Exercise,
+    Program,
+    ProgramAnswers,
+    WorkoutSubscription,
+    DayWorkout,
+    WorkoutRating
 )
 from datetime import datetime, timedelta
 import random as r
@@ -25,9 +31,9 @@ from django.core.mail import send_mail
 from rest_framework.authtoken.models import Token
 
 
-class WorkoutCategoryViewSet(viewsets.ModelViewSet):
-    queryset = WorkoutCategory.objects.all()
-    serializer_class = WorkoutCategorySerializer
+class ExerciseCategoryViewSet(viewsets.ModelViewSet):
+    queryset = ExerciseCategory.objects.all()
+    serializer_class = ExerciseCategorySerializer
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = [permissions.IsAuthenticated]
     http_method_names = ["get"]
@@ -39,26 +45,19 @@ class ListPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
 
 
-class WorkoutListViewSet(generics.ListAPIView):
+class ExerciseListViewSet(generics.ListAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
-    serializer_class = WorkoutSerializer
+    serializer_class = ExerciseSerializer
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = ListPagination
-    queryset = Workout.objects.all()
+    queryset = Exercise.objects.all()
 
     def get_queryset(self, *args, **kwargs):
-        user = self.request.user
-
-        try:
-            user_id = self.request.GET.get('user_id')
-        except:
-            user_id = None
-
-        query = Workout.objects.all()
+        query = Exercise.objects.all()
 
         try:
             category_id = self.request.GET.get('category_id')
-            category = WorkoutCategory.objects.get(id=category_id)
+            category = ExerciseCategory.objects.get(id=category_id)
         except:
             category = None
 
@@ -76,43 +75,90 @@ class WorkoutListViewSet(generics.ListAPIView):
         return query
 
 
+class TrainingProgramViewSet(viewsets.ModelViewSet):
+    queryset = Program.objects.all()
+    serializer_class = ProgramSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ["post", "get"]
+
+    def list(self, request):
+        return Response(ProgramSerializer(request.user.workout_program, context={'request': request}).data)
+
+    def create(self, request):
+        # Get Questionnaire
+        questionnaire = request.user.user_questionnaire
+
+        if questionnaire.workout_availability is not None and questionnaire.training_for is not None and questionnaire.goal is not None:
+            query = ProgramAnswers.objects.filter(
+                workout_availability=questionnaire.workout_availability,
+                training_for=questionnaire.training_for,
+                goal=questionnaire.goal
+            )
+
+            if len(query) > 0:
+                option = query.first()
+                request.user.workout_program = option.program
+                request.user.save()
+
+                return Response(ProgramSerializer(option.program).data)
+
+            else:
+                return Response({
+                    'Error': 'No Program available.'
+                }, 400)
+        else:
+            return Response({
+                'Error': 'Please Complete your questionnaire first!'
+            }, 400)
+
+
 class WorkoutSubscriptionViewSet(viewsets.ModelViewSet):
     queryset = WorkoutSubscription.objects.all()
     serializer_class = WorkoutSubscriptionSerializer
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = [permissions.IsAuthenticated]
-    http_method_names = ["post", "get", "patch"]
+    http_method_names = ["post"]
 
-    def list(self, request):
+    def perform_create(self, serializer):
+        item = serializer.save(owner=self.request.user)
+
+
+class CompleteWorkoutViewSet(ViewSet):
+    queryset = WorkoutSubscription.objects.all()
+    serializer_class = WorkoutSubscriptionSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ["post"]
+
+    def create(self, request):
         try:
-            workout_date = self.request.GET.get('workout_date')
+            workout_id = request.data['workout_id']
+            workout = DayWorkout.objects.get(id=workout_id)
         except:
-            workout_date = None
+            return Response({
+                'Error': 'Please Provide a valid workout ID'
+            })
 
-        try:
-            start_date = self.request.GET.get('start_date')
-        except:
-            start_date = None
+        subs = WorkoutSubscription.objects.filter(workout=workout, owner=request.user)
+        if len(subs) > 0:
+            subs.update(is_complete=True)
+        else:
+            WorkoutSubscription.objects.create(
+                workout=workout,
+                owner=request.user,
+                is_complete=True
+            )
 
-        try:
-            end_date = self.request.GET.get('end_date')
-        except:
-            end_date = None
+        return Response(ProgramSerializer(request.user.workout_program, context={'request': request}).data)
 
-        query = WorkoutSubscription.objects.filter(owner=request.user)
 
-        if workout_date == "today":
-            query = WorkoutSubscription.objects.filter(owner=request.user, workout_date=datetime.today().date())
-            return Response(WorkoutSubscriptionSerializer(query, many=True).data)
-
-        elif workout_date is not None:
-            query = query.filter(workout_date=workout_date)
-
-        elif start_date and end_date:
-            query = WorkoutSubscription.objects.filter(owner=request.user, workout_date__range=(start_date, end_date))
-            return Response(WorkoutSubscriptionSerializer(query, many=True, context={'request': request}).data)
-
-        return Response(WorkoutSubscriptionSerializer(query, many=True).data)
+class WorkoutRatingViewSet(viewsets.ModelViewSet):
+    queryset = WorkoutRating.objects.all()
+    serializer_class = WorkoutRatingSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ["post"]
 
     def perform_create(self, serializer):
         item = serializer.save(owner=self.request.user)

@@ -47,6 +47,8 @@ class User(AbstractUser):
     goal_carbohydrates = models.FloatField(null=True, blank=True)
     goal_fats = models.FloatField(null=True, blank=True)
 
+    workout_program = models.ForeignKey('workouts.Program', on_delete=models.CASCADE, null=True, blank=True)
+
     payment_method = models.ForeignKey(
         PaymentMethod,
         on_delete=models.SET_NULL,

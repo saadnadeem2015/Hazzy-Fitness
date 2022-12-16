@@ -162,3 +162,38 @@ class WorkoutRatingViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         item = serializer.save(owner=self.request.user)
+
+
+class NextWorkoutViewSet(ViewSet):
+    queryset = WorkoutSubscription.objects.all()
+    serializer_class = WorkoutSubscriptionSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ["get"]
+
+    def list(self, request):
+        program = ProgramSerializer(request.user.workout_program, context={'request': request}).data
+        if "weeks" in program:
+            for item in program['weeks']:
+                if item['monday_workout']:
+                    if item['monday_workout']['workout_status'] is None or item['monday_workout']['workout_status'] is False:
+                        return Response(item['monday_workout'])
+                if item['tuesday_workout']:
+                    if item['tuesday_workout']['workout_status'] is None or item['tuesday_workout']['workout_status'] is False:
+                        return Response(item['tuesday_workout'])
+                if item['wednesday_workout']:
+                    if item['wednesday_workout']['workout_status'] is None or item['wednesday_workout']['workout_status'] is False:
+                        return Response(item['wednesday_workout'])
+                if item['thursday_workout']:
+                    if item['thursday_workout']['workout_status'] is None or item['thursday_workout']['workout_status'] is False:
+                        return Response(item['thursday_workout'])
+                if item['friday_workout']:
+                    if item['friday_workout']['workout_status'] is None or item['friday_workout']['workout_status'] is False:
+                        return Response(item['friday_workout'])
+                if item['saturday_workout']:
+                    if item['saturday_workout']['workout_status'] is None or item['saturday_workout']['workout_status'] is False:
+                        return Response(item['saturday_workout'])
+                if item['sunday_workout']:
+                    if item['sunday_workout']['workout_status'] is None or item['sunday_workout']['workout_status'] is False:
+                        return Response(item['sunday_workout'])
+        return Response(None)

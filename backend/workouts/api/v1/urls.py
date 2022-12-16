@@ -6,7 +6,8 @@ from .viewsets import (
     TrainingProgramViewSet,
     WorkoutSubscriptionViewSet,
     CompleteWorkoutViewSet,
-    WorkoutRatingViewSet
+    WorkoutRatingViewSet,
+    NextWorkoutViewSet
 )
 
 router = DefaultRouter()
@@ -16,6 +17,7 @@ router.register("training_program", TrainingProgramViewSet, basename="training_p
 router.register("workout_subscription", WorkoutSubscriptionViewSet, basename="workout_subscription")
 router.register("complete_workout", CompleteWorkoutViewSet, basename="complete_workout")
 router.register("rate_workout", WorkoutRatingViewSet, basename="rate_workout")
+router.register("next_workout", NextWorkoutViewSet, basename="next_workout")
 
 
 urlpatterns = [

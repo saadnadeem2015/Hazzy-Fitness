@@ -174,26 +174,42 @@ class NextWorkoutViewSet(ViewSet):
     def list(self, request):
         program = ProgramSerializer(request.user.workout_program, context={'request': request}).data
         if "weeks" in program:
+            counter = 1
             for item in program['weeks']:
                 if item['monday_workout']:
                     if item['monday_workout']['workout_status'] is None or item['monday_workout']['workout_status'] is False:
-                        return Response(item['monday_workout'])
+                        output_data = item['monday_workout']
+                        output_data['week_number'] = counter
+                        return Response(output_data)
                 if item['tuesday_workout']:
                     if item['tuesday_workout']['workout_status'] is None or item['tuesday_workout']['workout_status'] is False:
-                        return Response(item['tuesday_workout'])
+                        output_data = item['tuesday_workout']
+                        output_data['week_number'] = counter
+                        return Response(output_data)
                 if item['wednesday_workout']:
                     if item['wednesday_workout']['workout_status'] is None or item['wednesday_workout']['workout_status'] is False:
-                        return Response(item['wednesday_workout'])
+                        output_data = item['wednesday_workout']
+                        output_data['week_number'] = counter
+                        return Response(output_data)
                 if item['thursday_workout']:
                     if item['thursday_workout']['workout_status'] is None or item['thursday_workout']['workout_status'] is False:
-                        return Response(item['thursday_workout'])
+                        output_data = item['thursday_workout']
+                        output_data['week_number'] = counter
+                        return Response(output_data)
                 if item['friday_workout']:
                     if item['friday_workout']['workout_status'] is None or item['friday_workout']['workout_status'] is False:
-                        return Response(item['friday_workout'])
+                        output_data = item['friday_workout']
+                        output_data['week_number'] = counter
+                        return Response(output_data)
                 if item['saturday_workout']:
                     if item['saturday_workout']['workout_status'] is None or item['saturday_workout']['workout_status'] is False:
-                        return Response(item['saturday_workout'])
+                        output_data = item['saturday_workout']
+                        output_data['week_number'] = counter
+                        return Response(output_data)
                 if item['sunday_workout']:
                     if item['sunday_workout']['workout_status'] is None or item['sunday_workout']['workout_status'] is False:
-                        return Response(item['sunday_workout'])
+                        output_data = item['sunday_workout']
+                        output_data['week_number'] = counter
+                        return Response(output_data)
+                counter += 1
         return Response(None)

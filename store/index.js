@@ -1,17 +1,25 @@
-import storeSlices from "./*/*.slice.js"
+import {configureStore,combineReducers} from '@reduxjs/toolkit';
+import AsyncStorage from '@react-native-community/async-storage';
+import { persistReducer } from 'redux-persist'
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import { reducer } from './reducers.js';
 
-// Minimal check to see if imported slice has all properties of an actual slice
-const isValid = (slice) => {
-  const sliceProps = ["actions", "caseReducers", "name", "reducer"]
-  return Object.keys(slice).every(prop => sliceProps.includes(prop))
-}
+const reducers = combineReducers(reducer);
 
-export const slices = storeSlices.filter(slice =>
-  slice.value.slice && isValid(slice.value.slice)
-).map(slice => slice.value.slice);
+const persistConfig = {
+    key: 'root',
+    storage:AsyncStorage,
+    whitelist:['auth']
+};
 
-export const connectors = slices.reduce((acc, slice) => {
-  let name = slice.name.charAt(0).toUpperCase() + slice.name.slice(1)
-  acc[name] = slice.reducer
-  return acc
-}, {})
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+
+const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false,}).concat(logger),
+    devTools: process.env.NODE_ENV !== 'production',
+});
+
+export default store;

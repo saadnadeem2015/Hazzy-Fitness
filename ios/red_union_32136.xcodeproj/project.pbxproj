@@ -8,10 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* red_union_32136Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* red_union_32136Tests.m */; };
+		04CEEEF929191812007E17F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04CEEEF829191812007E17F4 /* GoogleService-Info.plist */; };
+		065648D5BF1942CA8234239A /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8F160B61EE44D02B99771B9 /* Inter-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1F4E22B12E284C7EBF609A13 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93AA57A15BC3485DB5F01297 /* Inter-Black.ttf */; };
+		209024CC01ED4AFEB98BE0EB /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6D701C62B1B4ED6AE351311 /* Inter-Thin.ttf */; };
+		252F39380A5146558E043631 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC9B172C56EC42A1816B7202 /* Inter-Light.ttf */; };
+		2D950680BA023EF95C85C7DD /* libPods-red_union_32136-red_union_32136Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24800A167D9197D1E0C1A618 /* libPods-red_union_32136-red_union_32136Tests.a */; };
+		326C35C8683E670D4A3A2559 /* libPods-red_union_32136.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CBD9D5152F7F52CA883D70 /* libPods-red_union_32136.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		98D1DB535A104FF29C1C02EC /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE68F2FA293546FC91EEBDB0 /* Inter-Bold.ttf */; };
+		B110B2F967B847DFA90D3C1C /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB58416882F44D8D9E2CB034 /* Inter-Medium.ttf */; };
+		B8777B983631450B8E48CE4F /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C2DB2038ADA407E9C93BB59 /* Inter-ExtraLight.ttf */; };
+		C379C06CAF6C416A943EBEFE /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51180CE04FE40CFA58BF8FC /* Inter-SemiBold.ttf */; };
+		F9B23D10FAB44C43B4DD11D2 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD77F1910CF44690BA7108CF /* Inter-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,17 +37,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		001651CFF0C1BC226619FF39 /* Pods-red_union_32136.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-red_union_32136.debug.xcconfig"; path = "Target Support Files/Pods-red_union_32136/Pods-red_union_32136.debug.xcconfig"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* red_union_32136Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = red_union_32136Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* red_union_32136Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = red_union_32136Tests.m; sourceTree = "<group>"; };
+		04C677B5293125AF0015C8B3 /* red_union_32136.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = red_union_32136.entitlements; path = red_union_32136/red_union_32136.entitlements; sourceTree = "<group>"; };
+		04CEEEF829191812007E17F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* red_union_32136.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = red_union_32136.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = red_union_32136/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = red_union_32136/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = red_union_32136/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = red_union_32136/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = red_union_32136/main.m; sourceTree = "<group>"; };
+		172574D8A8D49AB80BEDBA8B /* Pods-red_union_32136.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-red_union_32136.release.xcconfig"; path = "Target Support Files/Pods-red_union_32136/Pods-red_union_32136.release.xcconfig"; sourceTree = "<group>"; };
+		24800A167D9197D1E0C1A618 /* libPods-red_union_32136-red_union_32136Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-red_union_32136-red_union_32136Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C2DB2038ADA407E9C93BB59 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraLight.ttf"; path = "../assets/fonts/Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
+		519EEE55F450FB6F938B688A /* Pods-red_union_32136-red_union_32136Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-red_union_32136-red_union_32136Tests.debug.xcconfig"; path = "Target Support Files/Pods-red_union_32136-red_union_32136Tests/Pods-red_union_32136-red_union_32136Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = red_union_32136/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		93AA57A15BC3485DB5F01297 /* Inter-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Black.ttf"; path = "../assets/fonts/Inter-Black.ttf"; sourceTree = "<group>"; };
+		9C73E4F2F33C70CAD2915D0D /* Pods-red_union_32136-red_union_32136Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-red_union_32136-red_union_32136Tests.release.xcconfig"; path = "Target Support Files/Pods-red_union_32136-red_union_32136Tests/Pods-red_union_32136-red_union_32136Tests.release.xcconfig"; sourceTree = "<group>"; };
+		B51180CE04FE40CFA58BF8FC /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		B6D701C62B1B4ED6AE351311 /* Inter-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Thin.ttf"; path = "../assets/fonts/Inter-Thin.ttf"; sourceTree = "<group>"; };
+		C7CBD9D5152F7F52CA883D70 /* libPods-red_union_32136.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-red_union_32136.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC9B172C56EC42A1816B7202 /* Inter-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Light.ttf"; path = "../assets/fonts/Inter-Light.ttf"; sourceTree = "<group>"; };
+		CD77F1910CF44690BA7108CF /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraBold.ttf"; path = "../assets/fonts/Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F8F160B61EE44D02B99771B9 /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
+		FB58416882F44D8D9E2CB034 /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
+		FE68F2FA293546FC91EEBDB0 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D950680BA023EF95C85C7DD /* libPods-red_union_32136-red_union_32136Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				326C35C8683E670D4A3A2559 /* libPods-red_union_32136.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +107,8 @@
 		13B07FAE1A68108700A75B9A /* red_union_32136 */ = {
 			isa = PBXGroup;
 			children = (
+				04C677B5293125AF0015C8B3 /* red_union_32136.entitlements */,
+				04CEEEF829191812007E17F4 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -90,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				C7CBD9D5152F7F52CA883D70 /* libPods-red_union_32136.a */,
+				24800A167D9197D1E0C1A618 /* libPods-red_union_32136-red_union_32136Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -109,6 +144,8 @@
 				00E356EF1AD99517003FC87E /* red_union_32136Tests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				91C00FABEF309C70381F8E08 /* Pods */,
+				95E7588FFA5D49A9875900FB /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -124,6 +161,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		91C00FABEF309C70381F8E08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				001651CFF0C1BC226619FF39 /* Pods-red_union_32136.debug.xcconfig */,
+				172574D8A8D49AB80BEDBA8B /* Pods-red_union_32136.release.xcconfig */,
+				519EEE55F450FB6F938B688A /* Pods-red_union_32136-red_union_32136Tests.debug.xcconfig */,
+				9C73E4F2F33C70CAD2915D0D /* Pods-red_union_32136-red_union_32136Tests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		95E7588FFA5D49A9875900FB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				93AA57A15BC3485DB5F01297 /* Inter-Black.ttf */,
+				FE68F2FA293546FC91EEBDB0 /* Inter-Bold.ttf */,
+				CD77F1910CF44690BA7108CF /* Inter-ExtraBold.ttf */,
+				2C2DB2038ADA407E9C93BB59 /* Inter-ExtraLight.ttf */,
+				CC9B172C56EC42A1816B7202 /* Inter-Light.ttf */,
+				FB58416882F44D8D9E2CB034 /* Inter-Medium.ttf */,
+				F8F160B61EE44D02B99771B9 /* Inter-Regular.ttf */,
+				B51180CE04FE40CFA58BF8FC /* Inter-SemiBold.ttf */,
+				B6D701C62B1B4ED6AE351311 /* Inter-Thin.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,9 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "red_union_32136Tests" */;
 			buildPhases = (
+				6F724173E7C276485D618CC6 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				F9BAED49555AE066392D4B66 /* [CP] Copy Pods Resources */,
+				A5276B2F022FF71919C8ACAE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,11 +216,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "red_union_32136" */;
 			buildPhases = (
+				9FE4C0A404B6BCFF3B7EE455 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				5CA828C6FC5F9FBFC1BA1986 /* [CP] Copy Pods Resources */,
+				BC3569A6C41B7B0BF0531A13 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,6 +284,16 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				04CEEEF929191812007E17F4 /* GoogleService-Info.plist in Resources */,
+				1F4E22B12E284C7EBF609A13 /* Inter-Black.ttf in Resources */,
+				98D1DB535A104FF29C1C02EC /* Inter-Bold.ttf in Resources */,
+				F9B23D10FAB44C43B4DD11D2 /* Inter-ExtraBold.ttf in Resources */,
+				B8777B983631450B8E48CE4F /* Inter-ExtraLight.ttf in Resources */,
+				252F39380A5146558E043631 /* Inter-Light.ttf in Resources */,
+				B110B2F967B847DFA90D3C1C /* Inter-Medium.ttf in Resources */,
+				065648D5BF1942CA8234239A /* Inter-Regular.ttf in Resources */,
+				C379C06CAF6C416A943EBEFE /* Inter-SemiBold.ttf in Resources */,
+				209024CC01ED4AFEB98BE0EB /* Inter-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +313,118 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		5CA828C6FC5F9FBFC1BA1986 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-red_union_32136/Pods-red_union_32136-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-red_union_32136/Pods-red_union_32136-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-red_union_32136/Pods-red_union_32136-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F724173E7C276485D618CC6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-red_union_32136-red_union_32136Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FE4C0A404B6BCFF3B7EE455 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-red_union_32136-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5276B2F022FF71919C8ACAE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-red_union_32136-red_union_32136Tests/Pods-red_union_32136-red_union_32136Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-red_union_32136-red_union_32136Tests/Pods-red_union_32136-red_union_32136Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-red_union_32136-red_union_32136Tests/Pods-red_union_32136-red_union_32136Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC3569A6C41B7B0BF0531A13 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-red_union_32136/Pods-red_union_32136-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-red_union_32136/Pods-red_union_32136-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-red_union_32136/Pods-red_union_32136-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9BAED49555AE066392D4B66 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-red_union_32136-red_union_32136Tests/Pods-red_union_32136-red_union_32136Tests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-red_union_32136-red_union_32136Tests/Pods-red_union_32136-red_union_32136Tests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-red_union_32136-red_union_32136Tests/Pods-red_union_32136-red_union_32136Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -286,6 +478,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 519EEE55F450FB6F938B688A /* Pods-red_union_32136-red_union_32136Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -312,6 +505,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C73E4F2F33C70CAD2915D0D /* Pods-red_union_32136-red_union_32136Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -335,23 +529,34 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 001651CFF0C1BC226619FF39 /* Pods-red_union_32136.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_ENTITLEMENTS = red_union_32136/red_union_32136.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6YKR59QXKM;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = red_union_32136/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hazzy Fitness";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.crowdbotics.red-union-32136-7dfbc61f";
 				PRODUCT_NAME = red_union_32136;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = hazzyfitnessprofile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -360,22 +565,33 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 172574D8A8D49AB80BEDBA8B /* Pods-red_union_32136.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_ENTITLEMENTS = red_union_32136/red_union_32136.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6YKR59QXKM;
 				INFOPLIST_FILE = red_union_32136/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hazzy Fitness";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.crowdbotics.red-union-32136-7dfbc61f";
 				PRODUCT_NAME = red_union_32136;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = hazzyfitnessprofile;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -414,6 +630,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -478,6 +695,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

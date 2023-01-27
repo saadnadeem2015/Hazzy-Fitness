@@ -1,84 +1,42 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { Provider } from "react-redux"
 import "react-native-gesture-handler"
-import { NavigationContainer } from "@react-navigation/native"
-import { createStackNavigator } from "@react-navigation/stack"
-import {
-  configureStore,
-  createReducer,
-  combineReducers
-} from "@reduxjs/toolkit"
+import {GestureHandlerRootView} from "react-native-gesture-handler"
+import persistStore from "redux-persist/es/persistStore"
+import { PersistGate } from "redux-persist/integration/react";
 
-import { screens } from "@screens"
-import { modules, reducers, hooks, initialRoute } from "@modules"
-import { connectors } from "@store"
+import store from './store';
 
-const Stack = createStackNavigator()
 
-import { GlobalOptionsContext, OptionsContext, getOptions } from "@options"
 
-const getNavigation = (modules, screens, initialRoute) => {
-  const Navigation = () => {
-    const routes = modules.concat(screens).map(mod => {
-      const pakage = mod.package;
-      const name = mod.value.title;
-      const Navigator = mod.value.navigator;
-      const Component = () => {
-        return (
-          <OptionsContext.Provider value={getOptions(pakage)}>
-            <Navigator />
-          </OptionsContext.Provider>
-        )
-      }
-      return <Stack.Screen key={name} name={name} component={Component} />
-    })
+import {AppNavigator} from './navigator/mainNavigator';
+import { setupHttpConfig } from "./assets/utils/http"
+import { Alert } from "react-native"
+import { BLACK_COLOR } from "./assets/colors"
 
-    const screenOptions = { headerShown: true };
 
-    return (
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName={initialRoute}
-          screenOptions={screenOptions}
-        >
-          {routes}
-        </Stack.Navigator>
-      </NavigationContainer>
-    )
-  }
-  return Navigation
-}
 
-const getStore = (globalState) => {
-  const appReducer = createReducer(globalState, _ => {
-    return globalState
-  })
 
-  const reducer = combineReducers({
-    app: appReducer,
-    ...reducers,
-    ...connectors
-  })
 
-  return configureStore({
-    reducer: reducer,
-    middleware: getDefaultMiddleware => getDefaultMiddleware()
-  })
-}
-
+const persistS = persistStore(store);
 const App = () => {
-  const global = useContext(GlobalOptionsContext)
-  const Navigation = getNavigation(modules, screens, initialRoute)
-  const store = getStore(global)
 
-  let effects = {}
-  hooks.map(hook => {
-    effects[hook.name] = hook.value()
-  })
+  useEffect(()=>{
+    const updateAccess = async()=>{
+      await setupHttpConfig();
+    }
+
+    updateAccess();
+  },[]);
+  
 
   return (
     <Provider store={store}>
-      <Navigation />
+      <PersistGate loading={null} persistor={persistS}>
+        <GestureHandlerRootView style={{flex:1,backgroundColor:BLACK_COLOR}}>
+          <AppNavigator/>
+        </GestureHandlerRootView>
+      </PersistGate>
     </Provider>
   )
 }

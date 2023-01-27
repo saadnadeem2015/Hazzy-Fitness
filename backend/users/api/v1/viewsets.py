@@ -27,6 +27,7 @@ from django.utils.translation import gettext as _
 
 import base64
 from django.core.files.base import ContentFile
+from django.conf import settings
 
 from .helper import calculate_age, calculate_user_numbers
 
@@ -44,7 +45,7 @@ class CountryViewSet(viewsets.ModelViewSet):
     serializer_class = CountrySerializer
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = [permissions.IsAuthenticated]
-    http_method_names = ["get"]
+    http_method_names = ["get", "post"]
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -149,7 +150,7 @@ class PasswordResetRequestViewSet(ViewSet):
         Please enter this token in your app: {1}
                 '''.format(user_email, random_token)
         try:
-            send_mail('Password Reset Token', email_content, 'omar.dalegah@gmail.com',
+            send_mail('Password Reset Token', email_content, settings.DEFAULT_FROM_EMAIL,
                       [user_email], fail_silently=False)
         except:
             return Response({

@@ -5,7 +5,8 @@ from .serializers import (
     PasswordResetTokenSerializer,
     PasswordResetTokenVerifySerializer,
     GenderSerializer,
-    CountrySerializer
+    CountrySerializer,
+    AccountVerifyTokenSerializer
 )
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.response import Response
@@ -16,7 +17,8 @@ from users.models import (
     User,
     PasswordResetToken,
     Gender,
-    Country
+    Country,
+    AccountVerifyToken
 )
 from datetime import datetime, timedelta
 import random as r
@@ -172,7 +174,26 @@ class VerifyResetTokenViewSet(ViewSet):
                 'Error': 'Invalid token.'
             }, 400)
 
-        return Response(PasswordResetTokenVerifySerializer(my_token).data)
+        return Response(AccountVerifyTokenSerializer(my_token).data)
+
+
+class VerifyAccountViewSet(ViewSet):
+    serializer_class = AccountVerifyTokenSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
+
+    def create(self, request):
+        try:
+            token = request.data['token']
+            my_token = AccountVerifyToken.objects.get(token=token, requested_user=request.user)
+            my_token.requested_user.is_verified = True
+            my_token.requested_user.save()
+        except:
+            return Response({
+                'Error': 'Invalid token.'
+            }, 400)
+
+        return Response(UserInfoSerializer(request.user).data)
 
 
 class ConfirmPasswordResetViewSet(ViewSet):

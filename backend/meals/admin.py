@@ -8,13 +8,15 @@ from .models import (
     MealInstruction,
     Meal,
     MealPlan,
-    MealCompletion
+    MealCompletion,
+    MealMedia
 )
 
 admin.site.register(MealCategory)
 admin.site.register(MealFilter)
 admin.site.register(MealIngredient)
 admin.site.register(MealInstruction)
+admin.site.register(MealMedia)
 admin.site.register(Meal)
 admin.site.register(MealPlan)
 admin.site.register(MealCompletion)

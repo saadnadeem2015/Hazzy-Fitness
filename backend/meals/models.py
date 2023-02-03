@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import FileExtensionValidator
 # Create your models here.
 
 
@@ -43,10 +43,21 @@ class MealInstruction(models.Model):
         return self.name
 
 
+class MealMedia(models.Model):
+    media_file = models.FileField(upload_to="meals_media/",
+                                  validators=[FileExtensionValidator(['jpg', 'png', 'jpeg', 'mp4'])],
+                                  null=True,
+                                  blank=True)
+    is_media_video = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+
 class Meal(models.Model):
     title = models.CharField(max_length=256)
     picture = models.ImageField(upload_to="meals_media/", null=True, blank=True)
     prep_video = models.FileField(upload_to="meals_prep_media/", null=True, blank=True)
+    prep_media_videos = models.ManyToManyField(MealMedia, blank=True)
 
     category = models.ForeignKey(MealCategory, on_delete=models.CASCADE, null=True, blank=True,
                                  related_name="category_meals")

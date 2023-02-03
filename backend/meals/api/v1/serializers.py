@@ -6,7 +6,8 @@ from meals.models import (
     MealInstruction,
     Meal,
     MealPlan,
-    MealCompletion
+    MealCompletion,
+    MealMedia
 )
 from users.api.v1.serializers import UserBriefSerializer
 
@@ -35,9 +36,16 @@ class MealInstructionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class MealMediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MealMedia
+        fields = '__all__'
+
+
 class MealSerializer(serializers.ModelSerializer):
     ingredients = MealIngredientSerializer(read_only=True, many=True)
     instructions = MealInstructionSerializer(read_only=True, many=True)
+    prep_media_videos = MealMediaSerializer(read_only=True, many=True)
 
     category = MealCategorySerializer(read_only=True)
     filters = MealFilterSerializer(read_only=True)

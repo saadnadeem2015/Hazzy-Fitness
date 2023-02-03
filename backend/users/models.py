@@ -72,8 +72,7 @@ class User(AbstractUser):
     )
 
     stripe_cust_id = models.CharField(max_length=256, blank=True, null=True)
-
-
+    is_verified = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
@@ -84,6 +83,16 @@ class PasswordResetToken(models.Model):
     token = models.IntegerField()
     expiry_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.token)
+
+
+class AccountVerifyToken(models.Model):
+    requested_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    token = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    email_sent = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
         return str(self.token)

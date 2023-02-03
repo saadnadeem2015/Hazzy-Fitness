@@ -3,7 +3,8 @@ from users.models import (
     User,
     PasswordResetToken,
     Gender,
-    Country
+    Country,
+    AccountVerifyToken
 )
 
 from membership.api.v1.serializers import *
@@ -27,7 +28,7 @@ class UserBriefSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'name', 'gender', 'country']
+        fields = ['id', 'email', 'name', 'gender', 'country', 'is_verified']
 
 
 class UserInfoSerializer(serializers.ModelSerializer):
@@ -57,6 +58,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
                   'goal_fats',
                   'active_membership',
                   'memberships',
+                  'is_verified'
                   ]
 
 
@@ -64,6 +66,12 @@ class PasswordResetTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = PasswordResetToken
         fields = ['id', 'expiry_date']
+
+
+class AccountVerifyTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AccountVerifyToken
+        fields = '__all__'
 
 
 class PasswordResetTokenVerifySerializer(serializers.ModelSerializer):

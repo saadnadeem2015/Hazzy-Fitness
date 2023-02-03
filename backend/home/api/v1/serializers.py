@@ -8,13 +8,14 @@ from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
 from rest_framework import serializers
 from rest_auth.serializers import PasswordResetSerializer
-
+import random as r
 from home.models import Notification, Feedback
-
+from users.models import AccountVerifyToken
+from django.core.mail import send_mail
 from allauth.socialaccount.providers.oauth2.client import OAuth2Error
 from rest_auth.registration.serializers import SocialLoginSerializer, SocialConnectMixin
 from allauth.socialaccount.helpers import complete_social_login
-
+from django.conf import settings
 
 User = get_user_model()
 
@@ -62,6 +63,24 @@ class SignupSerializer(serializers.ModelSerializer):
         )
         user.set_password(validated_data.get('password'))
         user.save()
+        random_token = str(r.randint(1000, 9999))
+        verify_token = AccountVerifyToken.objects.create(
+            requested_user=user,
+            token=str(r.randint(1000, 9999))
+        )
+        email_content = '''
+                Hello,
+
+                You need to verify your email: {0}
+                Please enter this token in your app  to verify your email: {1}
+                        '''.format(validated_data.get('email'), random_token)
+        try:
+            send_mail('Verify Account Token', email_content, settings.DEFAULT_FROM_EMAIL,
+                      [validated_data.get('email')], fail_silently=False)
+            verify_token.email_sent = True
+        except:
+            verify_token.email_sent = False
+        verify_token.save()
         request = self._get_request()
         setup_user_email(request, user, [])
         return user

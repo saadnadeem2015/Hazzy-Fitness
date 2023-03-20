@@ -82,13 +82,21 @@ class Meal(models.Model):
         return self.title
 
 
+class MealSubscription(models.Model):
+    subscriber = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+
 class MealPlan(models.Model):
     plan_calories = models.FloatField(default=0)
     plan_protein = models.FloatField(default=0)
     plan_carbohydrates = models.FloatField(default=0)
     plan_fats = models.FloatField(default=0)
 
-    meals = models.ManyToManyField(Meal)
+    meals_subscriptions = models.ManyToManyField(MealSubscription)
 
     owner = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name="user_meal_plans")
 

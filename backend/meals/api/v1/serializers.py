@@ -7,7 +7,8 @@ from meals.models import (
     Meal,
     MealPlan,
     MealCompletion,
-    MealMedia
+    MealMedia,
+    MealSubscription
 )
 from users.api.v1.serializers import UserBriefSerializer
 
@@ -67,10 +68,17 @@ class MealSerializer(serializers.ModelSerializer):
             return False
 
 
+class MealSubscriptionSerializer(serializers.ModelSerializer):
+    subscriber = UserBriefSerializer(read_only=True)
+    meal = MealSerializer(read_only=True)
+
+    class Meta:
+        model = MealSubscription
+        fields = '__all__'
+
+
 class MealPlanSerializer(serializers.ModelSerializer):
-    meals = MealSerializer(read_only=True, many=True)
-    meals_ids = serializers.PrimaryKeyRelatedField(write_only=True, source='meals',
-                                                       queryset=Meal.objects.all(), many=True)
+    meals_subscriptions = MealSubscriptionSerializer(read_only=True, many=True)
 
     owner = UserBriefSerializer(read_only=True)
 

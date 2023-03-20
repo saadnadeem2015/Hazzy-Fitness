@@ -94,6 +94,10 @@ class MealPlanViewSet(viewsets.ModelViewSet):
                 return Response({
                     'Error': 'Macros and Calories are exceeding the required.'
                 }, 400)
+        else:
+            return Response({
+                'Error': 'Please calculate your macros and calories first!'
+            }, 400)
 
         request.user.user_meal_plans.all().update(is_current=False)
 

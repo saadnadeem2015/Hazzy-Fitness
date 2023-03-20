@@ -8,7 +8,8 @@ from .serializers import (
     MealInstructionSerializer,
     MealSerializer,
     MealPlanSerializer,
-    MealCompletionSerializer
+    MealCompletionSerializer,
+    MealSubscriptionSerializer
 )
 
 from rest_framework.authtoken.serializers import AuthTokenSerializer
@@ -23,7 +24,8 @@ from meals.models import (
     MealInstruction,
     Meal,
     MealPlan,
-    MealCompletion
+    MealCompletion,
+    MealSubscription
 )
 from datetime import datetime, timedelta
 import random as r
@@ -66,11 +68,32 @@ class MealPlanViewSet(viewsets.ModelViewSet):
 
         try:
             meals_ids = list(request.data['meals_ids'])
-            meals = Meal.objects.filter(id__in=meals_ids)
         except:
             return Response({
                 'Error': 'Invalid Meal IDs provided'
             }, 400)
+
+        plan_calories = 0
+        plan_protein = 0
+        plan_carbohydrates = 0
+        plan_fats = 0
+        for meal_id in meals_ids:
+            try:
+                meal = Meal.objects.get(id=meal_id)
+            except:
+                return Response({
+                    'Error': 'Invalid Meal IDs provided'
+                }, 400)
+            plan_calories += meal.calories
+            plan_protein += meal.protein
+            plan_carbohydrates += meal.carbohydrates
+            plan_fats += meal.fats
+
+        if request.user.goal_calories and request.user.goal_protein and request.user.goal_carbohydrates and request.user.goal_fats:
+            if request.user.goal_calories < plan_calories and request.user.goal_protein < plan_protein and request.user.goal_carbohydrates < plan_carbohydrates and request.user.goal_fats < plan_fats:
+                return Response({
+                    'Error': 'Macros and Calories are exceeding the required.'
+                }, 400)
 
         request.user.user_meal_plans.all().update(is_current=False)
 
@@ -78,17 +101,15 @@ class MealPlanViewSet(viewsets.ModelViewSet):
             owner=request.user,
             is_current=True,
         )
-        plan.meals.add(*meals)
 
-        plan_calories = 0
-        plan_protein = 0
-        plan_carbohydrates = 0
-        plan_fats = 0
-        for meal in plan.meals.all():
-            plan_calories += meal.calories
-            plan_protein += meal.protein
-            plan_carbohydrates += meal.carbohydrates
-            plan_fats += meal.fats
+        result = []
+        for meal_id in meals_ids:
+            meal = Meal.objects.get(id=meal_id)
+            subscription = MealSubscription.objects.create(subscriber=request.user, meal=meal)
+            result.append(subscription.id)
+
+        all_subs = MealSubscription.objects.filter(id__in=result)
+        plan.meals_subscriptions.add(*all_subs)
 
         plan.plan_calories = plan_calories
         plan.plan_protein = plan_protein

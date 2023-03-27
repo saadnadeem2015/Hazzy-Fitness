@@ -69,7 +69,7 @@ class Questionnaire(models.Model):
     weight = models.FloatField(null=True, blank=True)
     weight_unit = models.ForeignKey(WeightUnit, on_delete=models.CASCADE, null=True, blank=True)
 
-    height = models.FloatField(null=True, blank=True)
+    height = models.CharField(max_length=256, null=True, blank=True)
     height_unit = models.ForeignKey(HeightUnit, on_delete=models.CASCADE, null=True, blank=True)
 
     activity_level = models.ForeignKey(ActivityLevel, on_delete=models.CASCADE, null=True, blank=True)

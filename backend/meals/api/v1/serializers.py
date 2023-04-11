@@ -11,6 +11,7 @@ from meals.models import (
     MealSubscription
 )
 from users.api.v1.serializers import UserBriefSerializer
+import datetime
 
 
 class MealCategorySerializer(serializers.ModelSerializer):
@@ -71,10 +72,28 @@ class MealSerializer(serializers.ModelSerializer):
 class MealSubscriptionSerializer(serializers.ModelSerializer):
     subscriber = UserBriefSerializer(read_only=True)
     meal = MealSerializer(read_only=True)
+    is_completed = serializers.SerializerMethodField()
 
     class Meta:
         model = MealSubscription
         fields = '__all__'
+
+    def get_is_completed(self, obj):
+        try:
+            user = self.context['request'].user
+        except:
+            return None
+        query = MealCompletion.objects.filter(
+                                             meal=obj.meal,
+                                             meal_subscription=obj,
+                                             owner=user,
+                                             is_complete=True,
+                                             completion_date=datetime.datetime.now().date()
+                                             )
+        if len(query) > 0:
+            return True
+        else:
+            return False
 
 
 class MealPlanSerializer(serializers.ModelSerializer):
@@ -91,6 +110,10 @@ class MealCompletionSerializer(serializers.ModelSerializer):
     meal = MealSerializer(read_only=True)
     meal_id = serializers.PrimaryKeyRelatedField(write_only=True, source='meal',
                                                     queryset=Meal.objects.all())
+
+    meal_subscription = MealSubscriptionSerializer(read_only=True)
+    meal_subscription_id = serializers.PrimaryKeyRelatedField(write_only=True, source='meal_subscription',
+                                                 queryset=MealSubscription.objects.all())
     owner = UserBriefSerializer(read_only=True)
 
     class Meta:

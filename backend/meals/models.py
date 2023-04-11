@@ -108,9 +108,16 @@ class MealPlan(models.Model):
 
 class MealCompletion(models.Model):
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name="meals_completed")
+    meal_subscription = models.ForeignKey(MealSubscription,
+                                          on_delete=models.CASCADE,
+                                          related_name="meals_subscribed_completed",
+                                          null=True,
+                                          blank=True)
     owner = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name="completed_meals")
 
     is_complete = models.BooleanField(default=False)
+
+    completion_date = models.DateField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)

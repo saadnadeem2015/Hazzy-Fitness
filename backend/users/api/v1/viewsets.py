@@ -31,7 +31,7 @@ import base64
 from django.core.files.base import ContentFile
 from django.conf import settings
 
-from .helper import calculate_age, calculate_user_numbers
+from .helper import calculate_age, calculate_user_numbers_updated
 
 
 class GenderViewSet(viewsets.ModelViewSet):
@@ -233,7 +233,7 @@ class UpdateUserMacrosViewSet(ViewSet):
         complete = complete and qu.activity_level and qu.workout_availability and qu.goal
         if complete:
             age = calculate_age(qu.birth_date)
-            result = calculate_user_numbers(
+            result = calculate_user_numbers_updated(
                 age,
                 request.user.gender.name.lower(),
                 qu.weight,

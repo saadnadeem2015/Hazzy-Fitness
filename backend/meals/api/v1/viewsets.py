@@ -186,5 +186,53 @@ class MealCompletionViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     http_method_names = ["post"]
 
-    def perform_create(self, serializer):
-        item = serializer.save(owner=self.request.user, is_complete=True)
+    def create(self, request):
+        try:
+            meal_id = request.data['meal_id']
+            meal = Meal.objects.get(id=int(meal_id))
+        except:
+            return Response({
+                'Error': 'Please provide a valid meal ID'
+            }, 400)
+
+        try:
+            meal_subscription_id = request.data['meal_subscription_id']
+            meal_subscription = MealSubscription.objects.get(id=meal_subscription_id)
+        except:
+            return Response({
+                'Error': 'Please provide a valid meal Subscription ID'
+            }, 400)
+
+        try:
+            completion_date = request.data['completion_date']
+        except:
+            return Response({
+                'Error': 'Please provide a completion date'
+            }, 400)
+
+        try:
+            is_complete = request.data['is_complete']
+        except:
+            return Response({
+                'Error': 'Please provide is_complete field'
+            }, 400)
+
+        obj = MealCompletion.objects.filter(
+            meal=meal,
+            meal_subscription=meal_subscription,
+            completion_date=completion_date,
+            owner=request.user
+        ).first()
+
+        if obj:
+            obj.is_complete = is_complete
+            obj.save()
+        else:
+            obj = MealCompletion.objects.filter(
+                meal=meal,
+                meal_subscription=meal_subscription,
+                completion_date=completion_date,
+                owner=request.user,
+                is_complete=is_complete
+        )
+        return Response(MealCompletionSerializer(obj).data)

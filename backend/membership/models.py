@@ -37,6 +37,7 @@ class SubscriptionPlan(models.Model):
     duration = models.IntegerField()
     duration_days = models.IntegerField()
     plan_media = models.ManyToManyField(SubscriptionMedia)
+    trial_days = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     stripe_product_id = models.CharField(max_length=256, null=True, blank=True)

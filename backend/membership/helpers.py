@@ -1,7 +1,7 @@
 import stripe
 from django.utils.crypto import get_random_string
 import datetime as dt
-from .models import PaymentMethod
+from .models import PaymentMethod, SubscriptionPlan
 stripe.api_key = "sk_test_51JifhFGjf6iOtLuPGLss1wenzm9EkGjPzeZ6mzJ4vC69UzufBVdjYxFsKl8OgINKrJF1ndowERSgi6pwJFCSplUE004g5jEbPA"
 
 
@@ -37,6 +37,11 @@ def create_stripe_payment_card(number, exp_month, exp_year, cvv, customer):
 
 
 def stripe_subscribe_customer(customer, price, payment_method):
+    plan_obj = SubscriptionPlan.objects.filter(stripe_price_id=price).first()
+    if plan_obj:
+        trial_days = plan_obj.trial_days
+    else:
+        trial_days = 0
     subscription = stripe.Subscription.create(
         customer=customer,
         items=[
@@ -46,6 +51,7 @@ def stripe_subscribe_customer(customer, price, payment_method):
         enable_incomplete_payments=False,
         collection_method="charge_automatically",
         default_payment_method=payment_method,
+        trial_period_days=trial_days
     )
 
     return subscription

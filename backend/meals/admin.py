@@ -9,7 +9,8 @@ from .models import (
     Meal,
     MealPlan,
     MealCompletion,
-    MealMedia
+    MealMedia,
+    MealSubscription
 )
 
 admin.site.register(MealCategory)
@@ -20,3 +21,4 @@ admin.site.register(MealMedia)
 admin.site.register(Meal)
 admin.site.register(MealPlan)
 admin.site.register(MealCompletion)
+admin.site.register(MealSubscription)

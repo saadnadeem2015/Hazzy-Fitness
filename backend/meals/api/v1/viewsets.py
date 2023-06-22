@@ -222,13 +222,14 @@ class MealCompletionViewSet(viewsets.ModelViewSet):
             meal_subscription=meal_subscription,
             completion_date=completion_date,
             owner=request.user
-        ).first()
+        )
 
-        if obj:
+        if len(obj) > 0:
+            obj = obj.first()
             obj.is_complete = is_complete
             obj.save()
         else:
-            obj = MealCompletion.objects.filter(
+            obj = MealCompletion.objects.create(
                 meal=meal,
                 meal_subscription=meal_subscription,
                 completion_date=completion_date,

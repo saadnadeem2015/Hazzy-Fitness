@@ -140,14 +140,33 @@ class CompleteWorkoutViewSet(ViewSet):
                 'Error': 'Please Provide a valid workout ID'
             })
 
+        try:
+            is_complete = str(request.data['is_complete'])
+
+            if is_complete.lower() == "true":
+                is_complete = True
+            elif is_complete.lower() == "false":
+                is_complete = False
+            elif is_complete.lower() == "null":
+                is_complete = None
+            else:
+                return Response({
+                    'Error': 'Please Provide a valid value of is_complete field'
+                })
+
+        except:
+            return Response({
+                'Error': 'Please Provide a is_complete field'
+            })
+
         subs = WorkoutSubscription.objects.filter(workout=workout, owner=request.user)
         if len(subs) > 0:
-            subs.update(is_complete=True)
+            subs.update(is_complete=is_complete)
         else:
             WorkoutSubscription.objects.create(
                 workout=workout,
                 owner=request.user,
-                is_complete=True
+                is_complete=is_complete
             )
 
         return Response(ProgramSerializer(request.user.workout_program, context={'request': request}).data)

@@ -112,7 +112,7 @@ class WorkoutSubscription(models.Model):
     workout = models.ForeignKey(DayWorkout, on_delete=models.CASCADE)
     owner = models.ForeignKey('users.User', on_delete=models.CASCADE)
 
-    is_complete = models.BooleanField(default=False)
+    is_complete = models.BooleanField(default=False, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)

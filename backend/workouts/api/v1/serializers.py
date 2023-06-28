@@ -47,6 +47,7 @@ class DayWorkoutSerializer(serializers.ModelSerializer):
     workout_items = WorkoutItemSerializer(read_only=True, many=True)
 
     workout_status = serializers.SerializerMethodField()
+    completion_date = serializers.SerializerMethodField()
 
     class Meta:
         model = DayWorkout
@@ -64,6 +65,22 @@ class DayWorkoutSerializer(serializers.ModelSerializer):
         else:
             item = query.first()
             return item.is_complete
+
+    def get_completion_date(self, obj):
+        try:
+            user = self.context['request'].user
+        except:
+            return None
+        query = WorkoutSubscription.objects.filter(workout=obj, owner=user)
+
+        if len(query) <= 0:
+            return None
+        else:
+            item = query.first()
+            if item.is_complete:
+                return item.updated_at.date()
+            else:
+                return None
 
 
 class ProgramWeekSerializer(serializers.ModelSerializer):

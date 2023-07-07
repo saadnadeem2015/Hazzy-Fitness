@@ -23,17 +23,17 @@ class GenderSerializer(serializers.ModelSerializer):
 
 
 class UserBriefSerializer(serializers.ModelSerializer):
-    gender = GenderSerializer(read_only=True)
+    sex = GenderSerializer(read_only=True)
     country = CountrySerializer(read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'name', 'gender', 'country', 'is_verified']
+        fields = ['id', 'email', 'name', 'sex', 'country', 'is_verified']
 
 
 class UserInfoSerializer(serializers.ModelSerializer):
-    gender = GenderSerializer(read_only=True)
-    gender_id = serializers.PrimaryKeyRelatedField(write_only=True, source='gender', queryset=Gender.objects.all())
+    sex = GenderSerializer(read_only=True)
+    sex_id = serializers.PrimaryKeyRelatedField(write_only=True, source='sex', queryset=Gender.objects.all())
 
     country = GenderSerializer(read_only=True)
     country_id = serializers.PrimaryKeyRelatedField(write_only=True, source='country', queryset=Country.objects.all())
@@ -47,8 +47,8 @@ class UserInfoSerializer(serializers.ModelSerializer):
                   'email',
                   'name',
                   'profile_image',
-                  'gender',
-                  'gender_id',
+                  'sex',
+                  'sex_id',
                   'country',
                   'country_id',
                   'user_questionnaire',

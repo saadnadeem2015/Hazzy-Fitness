@@ -11,6 +11,10 @@ class Gender(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Sex"
+        verbose_name_plural = "Sex"
+
 
 class Country(models.Model):
     name = models.CharField(max_length=256)
@@ -37,7 +41,7 @@ class User(AbstractUser):
     # around the globe.
     name = models.CharField(_("Name of User"), blank=True, null=True, max_length=255)
 
-    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, null=True, blank=True)
+    sex = models.ForeignKey(Gender, on_delete=models.CASCADE, null=True, blank=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True, blank=True)
 
     profile_image = models.ImageField(upload_to="profile_media/", null=True, blank=True)

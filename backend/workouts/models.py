@@ -53,6 +53,12 @@ class WorkoutItem(models.Model):
     reps = models.IntegerField(null=True, blank=True)
     seconds = models.IntegerField(null=True, blank=True)
 
+    def __str__(self):
+        if self.exercise:
+            return self.exercise.name
+        else:
+            return "WorkoutItem object ({0})".format(str(self.id))
+
 
 class DayWorkout(models.Model):
     name = models.CharField(max_length=256)

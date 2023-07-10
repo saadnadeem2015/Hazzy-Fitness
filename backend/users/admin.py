@@ -21,7 +21,7 @@ class UserAdmin(auth_admin.UserAdmin):
     add_form = UserCreationForm
     fieldsets = (("User", {"fields": (
         "name",
-        "gender",
+        "sex",
         "country",
         "profile_image",
         "goal_calories",

@@ -235,7 +235,7 @@ class UpdateUserMacrosViewSet(ViewSet):
             age = calculate_age(qu.birth_date)
             result = calculate_user_numbers_updated(
                 age,
-                request.user.gender.name.lower(),
+                request.user.sex.name.lower(),
                 qu.weight,
                 qu.weight_unit.name,
                 qu.height,

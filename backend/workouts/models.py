@@ -64,6 +64,11 @@ class DayWorkout(models.Model):
     name = models.CharField(max_length=256)
     internal_name = models.CharField(max_length=256, null=True, blank=True)
 
+    poster = models.FileField(upload_to="day_workout_poster/",
+                              validators=[FileExtensionValidator(['jpg', 'png', 'jpeg', 'mp4'])],
+                              null=True,
+                              blank=True)
+
     workout_items = models.ManyToManyField(WorkoutItem, blank=True)
     rounds = models.IntegerField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)

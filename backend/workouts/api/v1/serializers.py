@@ -26,9 +26,19 @@ class ExerciseMediaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ExerciseSubstituteSerializer(serializers.ModelSerializer):
+    category = ExerciseCategorySerializer(read_only=True)
+    exercise_media = ExerciseMediaSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Exercise
+        fields = ['id', 'title', 'poster', 'exercise_media', 'category', 'description']
+
+
 class ExerciseSerializer(serializers.ModelSerializer):
     category = ExerciseCategorySerializer(read_only=True)
     exercise_media = ExerciseMediaSerializer(read_only=True, many=True)
+    substitute = ExerciseSubstituteSerializer(read_only=True)
 
     class Meta:
         model = Exercise

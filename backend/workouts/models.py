@@ -55,7 +55,7 @@ class WorkoutItem(models.Model):
 
     def __str__(self):
         if self.exercise:
-            return self.exercise.name
+            return self.exercise.title
         else:
             return "WorkoutItem object ({0})".format(str(self.id))
 

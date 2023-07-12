@@ -35,6 +35,7 @@ class MealIngredient(models.Model):
 
 class MealInstruction(models.Model):
     name = models.CharField(max_length=256)
+    video_start_seconds = models.IntegerField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)

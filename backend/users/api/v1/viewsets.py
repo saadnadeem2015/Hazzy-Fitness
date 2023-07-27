@@ -193,7 +193,9 @@ class VerifyAccountViewSet(ViewSet):
                 'Error': 'Invalid token.'
             }, 400)
 
-        return Response(UserInfoSerializer(request.user).data)
+        user_obj = User.objects.get(id=request.user.id)
+
+        return Response(UserInfoSerializer(user_obj).data)
 
 
 class ConfirmPasswordResetViewSet(ViewSet):

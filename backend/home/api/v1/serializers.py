@@ -66,7 +66,7 @@ class SignupSerializer(serializers.ModelSerializer):
         random_token = str(r.randint(1000, 9999))
         verify_token = AccountVerifyToken.objects.create(
             requested_user=user,
-            token=str(r.randint(1000, 9999))
+            token=str(random_token)
         )
         email_content = '''
                 Hello,

@@ -244,6 +244,7 @@ class UpdateUserMacrosViewSet(ViewSet):
                 qu.height_unit.name,
                 qu.activity_level.value,
                 qu.goal.value,
+                qu.goal.deviation_percentage
             )
             request.user.goal_calories = str(result[0]).replace(",", "")
             request.user.goal_protein = str(result[1]).replace(",", "")

@@ -42,6 +42,7 @@ class WorkoutAvailability(models.Model):
 class Goal(models.Model):
     name = models.CharField(max_length=256)
     value = models.CharField(max_length=256, null=True, blank=True)
+    deviation_percentage = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.name

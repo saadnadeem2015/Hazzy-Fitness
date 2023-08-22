@@ -11,7 +11,7 @@ def calculate_age(birth_date):
     return age
 
 
-def calculate_user_numbers(age, gender, weight, weight_u, height, height_u, activ, target):
+def calculate_user_numbers(age, gender, weight, weight_u, height, height_u, activ, target, deviation_percentage=None):
     url = "https://www.mdapp.co/apps/macronutricalc_ajax.php"
     data_dict = {
                 'age': str(age),
@@ -30,9 +30,9 @@ def calculate_user_numbers(age, gender, weight, weight_u, height, height_u, acti
                 'submit': "Calculate",
             }
     if "deficit" in target:
-        data_dict['caldeficit'] = '2'
+        data_dict['caldeficit'] = str(deviation_percentage) if deviation_percentage else '2'
     elif "excess" in target:
-        data_dict['calexcess'] = '2'
+        data_dict['calexcess'] = str(deviation_percentage) if deviation_percentage else '2'
     m = MultipartEncoder(
     fields=data_dict
     )
@@ -49,13 +49,13 @@ def calculate_user_numbers(age, gender, weight, weight_u, height, height_u, acti
     return [calories, protien, carbohydrates, fats]
 
 
-def calculate_user_numbers_updated(age, gender, weight, weight_u, height, height_u, activ, target):
+def calculate_user_numbers_updated(age, gender, weight, weight_u, height, height_u, activ, target, deviation_percentage):
     if "deficit" in target:
-        caldeficit = '2'
+        caldeficit = str(deviation_percentage) if deviation_percentage else '2'
     elif "excess" in target:
-        caldeficit = '2'
+        caldeficit = str(deviation_percentage) if deviation_percentage else '2'
     else:
-        caldeficit = 2
+        caldeficit = '2'
 
     conn = http.client.HTTPSConnection("www.mdapp.co")
 

@@ -10,7 +10,8 @@ from .viewsets import (
     GenderViewSet,
     CountryViewSet,
     UpdateUserMacrosViewSet,
-    VerifyAccountViewSet
+    VerifyAccountViewSet,
+    ResendEmailVerificationTokenViewSet
 )
 
 router = DefaultRouter()
@@ -25,6 +26,7 @@ router.register("email_reset_token", PasswordResetRequestViewSet, basename="emai
 router.register("verify_reset_token", VerifyResetTokenViewSet, basename="verify_reset_token")
 router.register("confirm_password_reset", ConfirmPasswordResetViewSet, basename="confirm_password_reset")
 router.register("verify_account", VerifyAccountViewSet, basename="verify_account")
+router.register("resend_email_token", ResendEmailVerificationTokenViewSet, basename="resend_email_token")
 
 router.register("profile_picture", UpdateProfilePictureViewSet, basename="profile_picture")
 

@@ -257,3 +257,40 @@ class UpdateUserMacrosViewSet(ViewSet):
             return Response({
                 'Error': 'Please Complete your profile first!'
             }, 400)
+
+
+class ResendEmailVerificationTokenViewSet(ViewSet):
+    serializer_class = PasswordResetTokenSerializer
+
+    def create(self, request):
+        try:
+            user_email = request.data['user_email']
+            request_user = User.objects.get(email=user_email)
+        except:
+            return Response({
+                'Error': 'Invalid Email.'
+            }, 400)
+        verify_token = AccountVerifyToken.objects.filter(requested_user=request_user)
+        if len(verify_token) > 0:
+            verify_token = verify_token.first()
+        else:
+            random_token = str(r.randint(1000, 9999))
+            verify_token = AccountVerifyToken.objects.create(
+                requested_user=request_user,
+                token=str(random_token)
+            )
+        email_content = '''
+                        Hello,
+
+                        You need to verify your email: {0}
+                        Please enter this token in your app  to verify your email: {1}
+                                '''.format(user_email, verify_token.token)
+        try:
+            send_mail('Verify Account Token', email_content, settings.DEFAULT_FROM_EMAIL,
+                      [user_email], fail_silently=False)
+            verify_token.email_sent = True
+        except:
+            verify_token.email_sent = False
+        verify_token.save()
+
+        return Response(AccountVerifyTokenSerializer(verify_token).data)

@@ -1,41 +1,36 @@
-# red_union_32136
+# Hazzy Fitness
 
-Welcome to your new Crowdbotics app.
+React Native fitness app with profile setup, workout video, and subscription screens, built on a Crowdbotics project foundation.
 
-## What is Crowdbotics?
-Crowdbotics is an easy way to build software applications of all kinds.  You can build production, high-caliber software applications in minutes, rather than weeks or months, even if you're not a software developer.
+## Explore the code
 
-The reason this works is that most software applications and features we want to build are similar to applications that have been built before. We've crawled hundreds of thousands of public code repositories to teach the Crowdbotics engine how to create software.
+| Area | Source |
+| --- | --- |
+| Sign-in and registration screens | [Login](screens/Login) · [SignUp](screens/SignUp) |
+| Profile questionnaire | [CreateProfileQuestionnare](screens/CreateProfileQuestionnare) |
+| Main app navigation and screens | [HomeScreenTabs](screens/HomeScreenTabs) |
+| Workout video playback | [WorkoutVideoPlayer](screens/WorkoutVideoPlayer) |
+| Subscription and payment screens | [Subscriptions](screens/Subscriptions) · [PaymentScreen](screens/PaymentScreen) |
+| State management | [slices](slices) · [store](store) |
 
-As a result, Crowdbotics can generate new applications automatically in a standardized way.
+## Technology
 
-### Useful Links
-[App Dashboard](https://app.crowdbotics.com/)
-·
-[Knowledgebase](https://knowledge.crowdbotics.com/)
-·
-[Developer Training](https://knowledge.crowdbotics.com/crowdbotics-developer-training)
-·
-[Forum](https://discuss.crowdbotics.com/)
-·
-[Tech Support](https://crowdbotics.slack.com/archives/CGSAV319V)
+- React Native 0.64 and React 17
+- React Navigation
+- Redux Toolkit, React Redux, and Redux Persist
+- Axios for HTTP requests
+- React Native Video and SVG
+- Native Android and iOS projects
 
-## Table of Contents
-1. [Project Description](#project-description)
-2. [Project Structure](#project-structure)
-3. [Modules](#modules)
-4. [Getting Started: Frontend](#getting-started-frontend)
-   - [Installation](#installation)
-   - [Running with Fastlane](#running-with-fastlane)
-     - [Android](#android-1)
-     - [iOS](#ios-1)
-     - [React Native Web](#react-native-web)
-5. [Getting Started: Backend](backend#readme)
-6. [License](#license)
+Exact dependency versions and commands are listed in [package.json](package.json).
 
-## Project Description
+## Project background
 
-This react_native application was built with Crowdbotics www.crowdbotics.com
+This repository was scaffolded with Crowdbotics. The original internal project name, `red-union-32136`, remains in the package configuration. Crowdbotics attribution and licensing are retained below.
+
+## Development setup
+
+This is an older React Native codebase. The original setup instructions below are retained as a starting point; compatibility with current toolchains and availability of backend services have not been verified.
 
 ## Project Structure
 
